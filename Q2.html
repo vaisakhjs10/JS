@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Javascript form</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    	label{
+    		font-size: 1.25em;
+    	}
+    	input{
+    		width: 25em;
+    	}
+    	p{
+    		color: red;
+    	}
+    	.outline{
+    		margin-top: 5em;
+    	}
+    </style>
+</head>
+<body>
+	<script>
+		function Check(){
+			
+			let name= document.getElementById("name").value;
+			let name_err= document.getElementById("name_err");
+			let name_ln= name.length;
+			let name_val=name.match(/[0-9]/g)
+
+			let email= document.getElementById("email").value;
+			let email_err= document.getElementById("mail_err");
+			let email_ln= email.length;
+			let mail_val=email.match(/[a-zA-Z0-9! # $ % & ' * + - / = ? ^ _ ` { |]@[a-zA-Z0-9- . ].[a-zA-Z]/g);
+
+			let phone= document.getElementById("phone").value;
+			let phone_err= document.getElementById("phone_err");
+			let phone_ln= phone.length;
+			let phone_val=phone.match(/[a-zA-Z]/g)
+
+			let password= document.getElementById("pass").value;
+			let pass_err= document.getElementById("pass_err");
+			let pass_ln= password.length;
+
+			try{
+				if(name=="")throw "This field is mandatory.";
+				if(name_ln<3)throw "Name should contain minimum of three letters.";
+				if(name_val!=null)throw "Numbers are not allowed";
+			}
+			catch(err){
+				name_err.innerHTML=err
+			}
+
+			try{
+				if(email=="")throw "This field is mandatory.";
+				if(mail_val==null)throw "Please enter a valid email.";
+			}
+			catch(err){
+				email_err.innerHTML=err
+			}
+
+			try{
+				if(phone=="")throw "This field is mandatory.";
+				if(phone_ln!=10)throw "Please enter a valid mobile number.";
+				if(phone_val!=null)throw "Please enter a valid mobile number.";
+			}
+			catch(err){
+				phone_err.innerHTML=err
+			}
+
+			try{
+				if(password=="")throw "This field is mandatory.";
+				if(pass_ln<6)throw "Password should contain a minimum of six characters."
+			}
+			catch(err){
+				pass_err.innerHTML=err
+			}
+
+		}
+	</script>
+	<div class="d-flex align-items-center justify-content-center">
+		<div class="outline">
+			<label for="name">Name:</label><br>
+			<input type="text" id="name" name="name"><br>
+			<p id="name_err"></p>
+			
+			<label for="email">Email:</label><br>
+			<input type="email" id="email" name="email"><br>
+			<p id="mail_err"></p>
+
+			<label for="phone">Phone:</label><br>
+			<input type="phone" id="phone" name="phone"><br>
+			<p id="phone_err"></p>
+
+			<label for="pass">Password:</label><br>
+			<input type="password" id="pass" name="pass"><br>
+			<p id="pass_err"></p><br>
+
+			<input type="submit" value="Submit" onclick="Check()">
+		</div>
+	</div>
+</body>
+</html>
+
+	
+
+
